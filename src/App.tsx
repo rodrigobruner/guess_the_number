@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
 
   const [maxNumber, setMaxNumber] = useState(10);
-  const [magicNumber, setMagicNumber] = useState(Math.floor(Math.random() * 11));
+  const [magicNumber] = useState(Math.floor(Math.random() * 11));
   const [guess, setGuess] = useState<Number|''>('');
   const [displayMagicNumber, setDisplayMagicNumber] = useState<boolean>(false);
   const [msg, setMsg] = useState<string>('');
@@ -16,6 +14,7 @@ function App() {
   }
 
   function handleDisplayMagicNumber(){
+      setMaxNumber(10); 
       setDisplayMagicNumber(displayMagicNumber ? false:true);
       setMsg('');
       winner();
