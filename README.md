@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# Guess the Number
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Guess the Number is a lightweight party game built with React, TypeScript, and Vite. Players add their guesses for a hidden number, and the closest guess wins when the secret is revealed.
 
-Currently, two official plugins are available:
+Projected GitHub Pages URL: https://rodrigobruner.github.io/guess_the_number/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Add as many player guesses as you like with just a name and a number.
+- Reveal or hide the secret “magic” number at any time to keep the suspense going.
+- Automatically calculates the winner based on whose guess is closest to the magic number.
+- Remove individual guesses to keep the list clean before revealing the result.
+- Built with modern tooling (React 19 + Vite) for fast local development and easy deployment.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Getting Started
 
-## Expanding the ESLint configuration
+```bash
+# install dependencies
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# start the dev server on http://localhost:5173
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Gameplay Flow
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Choose a maximum value for the secret number (defaults to 10).
+2. Each player enters their name and a guess within the allowed range.
+3. When ready, click **Show magic number** to reveal the secret and announce the closest guesser.
+4. Toggle the magic number back to hidden to start a fresh round; you can remove old guesses or add new ones.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Available Scripts
+
+- `npm run dev` – Launch the Vite development server with hot reloading.
+- `npm run build` – Create an optimized production build.
+- `npm run preview` – Preview the production build locally.
+- `npm run lint` – Run ESLint across the project.
+
+## Tech Stack
+
+- React 19 + TypeScript
+- Vite build tool
+- ESLint for static analysis
+
