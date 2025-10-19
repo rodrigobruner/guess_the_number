@@ -16,21 +16,25 @@ function App() {
   const [guess, setGuess] = useState<number>(0);
   const [username, setUsername] = useState<string>('');
   const [guesses, addGuess] = useState<UserGuess[]>([]);
-  
+
+  // Set initial magic number
   useEffect(() => {
     setMagicNumber(Math.floor(Math.random() * maxNumber+1));
   }, [maxNumber]);
 
+  // Generate a new magic number
   function generateNewNumber(){
     setMagicNumber(Math.floor(Math.random() * maxNumber+1));
   }
 
+  // Handle form submission
   function handleSubmit(event: React.FormEvent){
     event.preventDefault();
     addGuess([...guesses, { username, guess }]);
   }
 
 
+  // Handle display/hide magic number
   function handleDisplayMagicNumber(){
       setMaxNumber(10); 
       if(displayMagicNumber){
@@ -40,15 +44,16 @@ function App() {
       checkWinner();
   }
 
-
+  // Handle removing a guess
   function handleRemoveGuess(indexToRemove: number){
     const newGuesses = guesses.filter((_, index) => index !== indexToRemove);
     addGuess(newGuesses);
   }
 
+  // Check for winner
   function checkWinner(){
-    const neartestGuess = guesses.reduce((prev, curr) => {
-      return (Math.abs(curr.guess - magicNumber) < Math.abs(prev.guess - magicNumber) ? curr : prev);
+    const neartestGuess = guesses.reduce((bestGuess, currentGuess) => {
+      return (Math.abs(currentGuess.guess - magicNumber) < Math.abs(bestGuess.guess - magicNumber) ? currentGuess : bestGuess);
     }, guesses[0]);
     setMsg('Winner: '+ neartestGuess.username + ' with guess ' + neartestGuess.guess);
   }
@@ -69,7 +74,8 @@ function App() {
         <input  type='number' onChange={(e) => { setGuess(Number(e.target.value))} } />
         <button type='submit'>Add guess</button>
       </form>
-
+      <hr></hr>
+      <h3>Guesses:</h3>
       {
         guesses.map((g, index) => (
           <div key={index}>
@@ -77,7 +83,6 @@ function App() {
           </div>
         ))
       }
-
     </>
   )
 }
