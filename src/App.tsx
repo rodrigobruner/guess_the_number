@@ -16,11 +16,7 @@ function App() {
   const [guess, setGuess] = useState<number>(0);
   const [username, setUsername] = useState<string>('');
   const [guesses, addGuess] = useState<UserGuess[]>([]);
-
-  const [ranking, setRanking] = useState<UserGuess[]>([]);
   
-
-
   useEffect(() => {
     setMagicNumber(Math.floor(Math.random() * maxNumber+1));
   }, [maxNumber]);
